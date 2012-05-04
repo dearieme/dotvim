@@ -2,4 +2,3 @@ view
 view/*
 doc/tags
 bundle/*/doc/tags
-vimrc.*
