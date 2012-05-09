@@ -3,3 +3,7 @@ colorscheme jellybeans
 set colorcolumn=0
 
 map <Leader>n :tabnew<cr>
+
+au BufRead,BufNewFile *.tt2  setfiletype tt2html
+au BufRead,BufNewFile *.tt   setfiletype tt2html
+
