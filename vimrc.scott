@@ -1,3 +1,5 @@
 set t_Co=256
 colorscheme jellybeans
 set colorcolumn=0
+
+map <Leader>n :tabnew<cr>
