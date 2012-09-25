@@ -76,3 +76,36 @@
 [submodule "bundle/vim2hs"]
 	path = bundle/vim2hs
 	url = git://github.com/dag/vim2hs.git
+[submodule "bundle/ghcmod"]
+	path = bundle/ghcmod
+	url = git://github.com/eagletmt/ghcmod-vim.git
+[submodule "bundle/syntastic"]
+	path = bundle/syntastic
+	url = git://github.com/scrooloose/syntastic.git
+[submodule "bundle/neco-ghc"]
+	path = bundle/neco-ghc
+	url = git://github.com/ujihisa/neco-ghc.git
+[submodule "bundle/neocomplcache"]
+	path = bundle/neocomplcache
+	url = git://github.com/Shougo/neocomplcache.git
+[submodule "bundle/html-template-syntax"]
+	path = bundle/html-template-syntax
+	url = git://github.com/pbrisbin/html-template-syntax.git
+[submodule "bundle/textobj-indent"]
+	path = bundle/textobj-indent
+	url = git://github.com/kana/vim-textobj-indent.git
+[submodule "bundle/textobj-user"]
+	path = bundle/textobj-user
+	url = git://github.com/kana/vim-textobj-user.git
+[submodule "bundle/indent-guides"]
+	path = bundle/indent-guides
+	url = git://github.com/nathanaelkane/vim-indent-guides.git
+[submodule "bundle/vimproc"]
+	path = bundle/vimproc
+	url = git://github.com/Shougo/vimproc.git
+[submodule "bundle/jsbeautify"]
+	path = bundle/jsbeautify
+	url = git://github.com/maksimr/vim-jsbeautify.git
+[submodule "bundle/markdown"]
+	path = bundle/markdown
+	url = git://github.com/plasticboy/vim-markdown.git
