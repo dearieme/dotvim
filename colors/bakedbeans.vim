@@ -291,8 +291,8 @@ call s:X("Normal","e8e8d3","","","White","")
 set background=dark
 
 if version >= 700
-  call s:X("CursorLine","","3f3f3f","","","Black")
-  call s:X("CursorColumn","","3f3f3f","","","Black")
+  call s:X("CursorLine","","343434","","","Black")
+  call s:X("CursorColumn","","343434","","","Black")
   call s:X("MatchParen","ffffff","80a090","bold","","DarkCyan")
 
   call s:X("TabLine","000000","b0b8c0","italic","","Black")
@@ -308,7 +308,7 @@ call s:X("Visual","","404040","","","Black")
 call s:X("Cursor","","b0d0f0","","","")
 
 call s:X("LineNr","605958","","none","Black","")
-call s:X("Comment","888888","","italic","Grey","")
+call s:X("Comment","838383","","italic","Grey","")
 call s:X("Todo","808080","","bold","White","Black")
 
 call s:X("StatusLine","000000","dddddd","italic","Black","White")
