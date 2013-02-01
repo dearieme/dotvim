@@ -271,39 +271,8 @@ au FileType perl vmap <Leader>pt :Tidy<cr> " visual mode
 " include local lib when doing perl syntax checks
 let g:syntastic_perl_lib_path = './lib'
 
-" js
-"au FileType javascript command! -range=% -nargs=* Tidy <line1>,<line2> :call JsBeautify()
-"au FileType javascript nmap <Leader>pt mz:Tidy<cr>'z:delmarks z<cr> " normal mode
-"au FileType javascript vmap <Leader>pt :Tidy<cr> " visual mode
-au FileType javascript noremap <buffer> <leader>pt :call JsBeautify()<cr>
-"au FileType html noremap <buffer> <leader>pt :call HtmlBeautify()<cr>
-"au FileType css noremap <buffer> <leader>pt :call CSSBeautify()<cr>
-
-" csstidy
-"au FileType css command! -range=% -nargs=* Tidy <line1>,<line2>!csstidy
-"au FileType css nmap <Leader>pt mz:Tidy<cr>'z:delmarks z<cr> " normal mode
-"au FileType css vmap <Leader>pt :Tidy<cr> " visual mode
-
-" json tidy
-"au FileType json set filetype=javascript foldmethod=syntax
-"au FileType json command! -range=% -nargs=* Tidy <line1>,<line2>!json_xs -f json -t json-pretty
-"au FileType json nmap <Leader>pt :Tidy<cr> " normal mode
-"au FileType json vmap <Leader>pt :Tidy<cr> " visual mode
-
-" xmlfolding
-"au BufNewFile,BufRead *.xml,*.htm,*.html so bundle/plugin/XMLFolding.vim
-
 " ack shortcut
 let g:ackprg="ack-grep -H --nocolor --nogroup --column"
-
-" Show syntax highlighting groups for word under cursor
-"nmap <C-S-P> :call <SID>SynStack()<CR>
-"function! <SID>SynStack()
-  "if !exists("*synstack")
-    "return
-  "endif
-  "echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-"endfunc
 
 inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
 

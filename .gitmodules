@@ -85,9 +85,6 @@
 [submodule "bundle/indent-guides"]
 	path = bundle/indent-guides
 	url = git://github.com/nathanaelkane/vim-indent-guides.git
-[submodule "bundle/jsbeautify"]
-	path = bundle/jsbeautify
-	url = git://github.com/maksimr/vim-jsbeautify.git
 [submodule "bundle/markdown"]
 	path = bundle/markdown
 	url = git://github.com/plasticboy/vim-markdown.git
