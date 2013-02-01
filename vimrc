@@ -23,6 +23,8 @@ filetype on
 filetype plugin on
 filetype indent on
 set t_Co=256
+syntax on
+colorscheme bakedbeans
 
 " folding
 "let perl_fold=1
@@ -32,27 +34,13 @@ set foldmethod=indent
 " backspaces over everything in insert mode
 set backspace=indent,eol,start
 
-" Indent
 set autoindent
 set tabstop=2
 set shiftwidth=2
 set smartindent
 set expandtab
-syntax on
-
 set textwidth=79
 set formatoptions=qrn1
-
-" mojo
-let mojo_highlight_data = 1
-
-" Sidebar folder navigation
-let NERDTreeShowLineNumbers=1
-let NERDTreeShowBookmarks=1
-let NERDTreeChDirMode=2
-let NERDTreeWinSize=35
-"let NERDTreeIgnore=['CVS']
-
 set incsearch
 set ignorecase
 set smartcase
@@ -60,10 +48,11 @@ set visualbell
 set noerrorbells
 set hlsearch
 set history=500
-
-" scrolling
-"set ruler
-set scrolloff=10 " Scroll with 10 line buffer
+set scrolloff=10   " Scroll with 10 line buffer
+set nobackup
+set noswapfile
+set numberwidth=5  " line tracking
+set cursorline
 
 " clear recent search highlighting with space
 :nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
@@ -71,83 +60,62 @@ set scrolloff=10 " Scroll with 10 line buffer
 " save files as root without prior sudo
 cmap w!! w !sudo tee % >/dev/null
 
-set nobackup
-set noswapfile
+set list
+set listchars=tab:.\ ,trail:.,extends:#,nbsp:.
 
-set statusline=%f\ " tail of the filename
-set statusline+=%{fugitive#statusline()}         " git branch
+" status bar
+set statusline=%f\                                " tail of the filename
+set statusline+=%{fugitive#statusline()}          " git branch
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%{SyntasticStatuslineFlag()}      " syntax errors
 set statusline+=%*
 
-set statusline+=%=      "left/right separator
-set statusline+=%{StatuslineCurrentHighlight()}\ "current highlight
-set statusline+=%c,     "cursor column
-set statusline+=%l/%L   "cursor line/total lines
-set statusline+=\ %P\    "percent through file
-set laststatus=2        " Always show status line
+set statusline+=%=                                " left/right separator
+set statusline+=%{StatuslineCurrentHighlight()}\  " current highlight
+set statusline+=%c,                               " cursor column
+set statusline+=%l/%L                             " cursor line/total lines
+set statusline+=\ %P\                             " percent through file
+set laststatus=2                                  " always show status line
 
 " warning for mixed indenting
 set statusline+=%#error#
 set statusline+=%{StatuslineMixedIndentingWarning()}
 set statusline+=%*
 
-set statusline+=%h      "help file flag
-set statusline+=%y      "filetype
-set statusline+=%r      "read only flag
-set statusline+=%m      "modified flag
+set statusline+=%h                                " help file flag
+set statusline+=%y                                " filetype
+set statusline+=%r                                " read only flag
+set statusline+=%m                                " modified flag
 
-set list
-set listchars=tab:.\ ,trail:.,extends:#,nbsp:.
+" Sidebar folder navigation
+let NERDTreeShowLineNumbers=1
+let NERDTreeShowBookmarks=1
+let NERDTreeChDirMode=2
+let NERDTreeWinSize=35
 
-if &t_Co >= 256
-  colorscheme bakedbeans
-else
-  colorscheme ir_black
-endif
-
-" line tracking
-set numberwidth=5
-set cursorline
-set cursorcolumn
-if exists("&colorcolumn")
-  set colorcolumn=0
-endif
-
-function! StatuslineCurrentHighlight()
-    let name = synIDattr(synID(line('.'),col('.'),1),'name')
-    if name == ''
-        return ''
-    else
-        return '[' . name . ']'
-    endif
-endfunction
+" mojo
+let mojo_highlight_data = 1
 
 " shortcuts
 inoremap jj <Esc>
-
 nnoremap ; :
 
 let mapleader = ','
-nnoremap <Leader>a :Ack
 noremap <Leader>, :NERDTreeToggle<cr>
 map <Leader>n :tabnew<cr>
 map <Leader>h :tabprevious<cr>
 map <Leader>l :tabnext<cr>
 map <Leader>w :tabclose<cr>
 map <Leader>pd :!perldoc %<cr>
-map <Leader>cs :colorscheme sri<cr>
 map <Leader>f :TlistToggle<cr>
 map <Leader>M :!morbo %<cr>
 map <Leader>x :!perl -Ilib %<cr>
-map <leader>H :call HexHighlight()<cr>
 map <leader>tts :%s/\s\+$//<cr>
 map <leader>term :ConqueTerm bash<cr>
 map <leader>b :TagbarToggle<cr>
-map <leader>sp :setlocal spell! spelllang=en_us<CR> " toggle spellcheck
+map <leader>sp :setlocal spell! spelllang=en_GB<CR>  " toggle spellcheck
 
-" cd to directory of current file
-map <leader>cd :cd %:p:h<cr>
+map <leader>cd :cd %:p:h<cr>         " cd to directory of current file
 map <leader>F :NERDTreeFind<cr>
 map <leader>R :source ~/.vimrc<cr>
 
@@ -156,7 +124,6 @@ map <leader>push :silent !sandbox push %<cr>
 map <leader>same :!sandbox same %<cr>
 map <leader>rt :!sandbox rtest %<cr>
 map <leader>diff :!sandbox diff %<cr>
-nnoremap <F5> :GundoToggle<cr>
 
 " http://vim.wikia.com/wiki/Redirect_g_search_output
 nmap <leader>s :redir @a<cr>:g//<cr>:redir END<cr>:new<cr>:put! a<cr><cr>zRggd<cr>
@@ -192,9 +159,6 @@ imap <Leader><Tab> <C-X><C-O>
 
 " perldoc for module || perl command
 noremap K :!perldoc <cword> <bar><bar> perldoc -f <cword><cr>
-" Opens nerdtree and puts focus in edited file
-"autocmd VimEnter * NERDTree
-"autocmd VimEnter * wincmd p
 
 " file types
 au BufRead,BufNewFile *.t,*.cgi set filetype=perl
@@ -265,8 +229,8 @@ au FileType perl noremap <leader>P :PerlModuleSource <cword><cr>zR<cr>
 
 " perltidy
 au FileType perl command! -range=% -nargs=* Tidy <line1>,<line2>!perltidy
-au FileType perl nmap <Leader>pt mz:Tidy<cr>'z:delmarks z<cr> " normal mode
-au FileType perl vmap <Leader>pt :Tidy<cr> " visual mode
+au FileType perl nmap <Leader>pt mz:Tidy<cr>'z:delmarks z<cr>  " normal mode
+au FileType perl vmap <Leader>pt :Tidy<cr>                     " visual mode
 
 " include local lib when doing perl syntax checks
 let g:syntastic_perl_lib_path = './lib'
@@ -286,6 +250,15 @@ function! s:align()
     normal! 0
     call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
   endif
+endfunction
+
+function! StatuslineCurrentHighlight()
+    let name = synIDattr(synID(line('.'),col('.'),1),'name')
+    if name == ''
+        return ''
+    else
+        return '[' . name . ']'
+    endif
 endfunction
 
 function! StatuslineMixedIndentingWarning()
@@ -328,21 +301,6 @@ function! ScreencastPrep()
   NoMatchParen "opposite: DoMatchParen
 endfunction
 
-function! ScreencastPrep1080()
-  " disable blinking cursor
-  set guicursor+=n:hor10-blinkon0 
-  " disable autocomplete
-  AcpDisable
-  " disable colorcolumn
-  set colorcolumn=0
-  "set guifont=Menlo:h20
-  "set guifont=Monaco:h26
-  set guifont=Consolas:h29
-  set ts=2
-  set sw=2
-  NoMatchParen "opposite: DoMatchParen
-endfunction
-
 function! s:check_and_lint()
   let l:qflist = ghcmod#make('check')
   call extend(l:qflist, ghcmod#make('lint'))
@@ -357,31 +315,27 @@ function! DoPrettyXML()
   " save the filetype so we can restore it later
   let l:origft = &ft
   set ft=
-  " delete the xml header if it exists. This will
-  " permit us to surround the document with fake tags
-  " without creating invalid xml.
+  " delete the xml header if it exists, this will permit us to surround the
+  " document with fake tags" without creating invalid xml, then we can format
+  " dodgy XML fragments
   1s/<?xml .*?>//e
-  " insert fake tags around the entire document.
-  " This will permit us to pretty-format excerpts of
-  " XML that may contain multiple top-level elements.
   0put ='<PrettyXML>'
   $put ='</PrettyXML>'
+
   silent %!xmllint --format -
-  " xmllint will insert an <?xml?> header. it's easy enough to delete
-  " if you don't want it.
+
   " delete the fake tags
   2d
   $d
   " restore the 'normal' indentation, which is one extra level
   " too deep due to the extra tags we wrapped around the document.
   silent %<
-  " back to home
-  1
+  1  " back to home
+
   " restore the filetype
   exe "set ft=" . l:origft
 endfunction
 "command! PrettyXML call DoPrettyXML()
-
 
 function DistractionFreeWriting()
     colorscheme iawriter
@@ -397,9 +351,4 @@ function DistractionFreeWriting()
     set nocursorcolumn
     set nonumber
     set cc=
-
-    if has("gui_macvim")
-      set fuoptions=background:#00f5f6f6 " macvim specific setting for editor's background color 
-      set fullscreen                     " go to fullscreen editing mode
-    endif
 endfunction
