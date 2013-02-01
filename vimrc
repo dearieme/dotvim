@@ -110,7 +110,9 @@ endif
 set numberwidth=5
 set cursorline
 set cursorcolumn
-set colorcolumn=0
+if exists("&colorcolumn")
+  set colorcolumn=0
+endif
 
 function! StatuslineCurrentHighlight()
     let name = synIDattr(synID(line('.'),col('.'),1),'name')
