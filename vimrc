@@ -1,8 +1,3 @@
-" slimv options
-let g:slimv_keybindings=1
-let g:lisp_rainbow=1
-let g:slimv_leader=',s'
-
 " Gist options - put code in clipboard
 let g:gist_clip_command = 'pbcopy'
 let g:gist_detect_filetype = 1
@@ -21,23 +16,20 @@ call pathogen#infect()
 
 " turn on indent-guides
 autocmd VimEnter * IndentGuidesEnable
-let g:indent_guides_guide_size=1
+let g:indent_guides_guide_size=2
 
 set number
 set nocompatible
 
-"set wildignore+=*CVS
-
-" snipmate
 filetype on
 filetype plugin on
 filetype indent on
+set t_Co=256
 
 " folding
 "let perl_fold=1
 "let perl_extended_vars = 1
-
-set laststatus=2
+set foldmethod=indent
 
 " backspaces over everything in insert mode
 set backspace=indent,eol,start
@@ -52,13 +44,6 @@ syntax on
 
 set textwidth=79
 set formatoptions=qrn1
-"if version >= 703
-if exists('+colorcolumn')
-  set colorcolumn=80
-endif
-
-" folding
-set foldmethod=indent
 
 " mojo
 let mojo_highlight_data = 1
@@ -85,17 +70,14 @@ set scrolloff=10 " Scroll with 10 line buffer
 " clear recent search highlighting with space
 :nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 
-
 " save files as root without prior sudo
 cmap w!! w !sudo tee % >/dev/null
 
 set nobackup
 set noswapfile
 
-" git branch
 set statusline=%f\ " tail of the filename
-"set statusline=
-set statusline+=%{fugitive#statusline()}
+set statusline+=%{fugitive#statusline()}         " git branch
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -120,25 +102,8 @@ set statusline+=%m      "modified flag
 set list
 set listchars=tab:.\ ,trail:.,extends:#,nbsp:.
 
-" font
-if has("gui_gnome")
-  set guifont=Monospace\ 8
-  set list
-  set listchars=tab:▸\ ,eol:¬,extends:#,nbsp:.,trail:.
-
-elseif has("gui_macvim")
-  "set guifont=Menlo:h12
-  set guifont=Monaco:h12
-  set list
-  set listchars=tab:▸\ ,eol:¬,extends:#,nbsp:.,trail:.
-endif
-
-if &t_Co >= 256 || has("gui_running")
-  set guifont=Monaco:h12
-  colorscheme tempire
-  set guioptions-=r
-  set go-=L
-  set go-=T
+if &t_Co >= 256
+  colorscheme bakedbeans
 else
   colorscheme ir_black
 endif
@@ -147,9 +112,7 @@ endif
 set numberwidth=5
 set cursorline
 set cursorcolumn
-
-" turn off cursor blinking
-set guicursor+=a:blinkon0
+set colorcolumn=0
 
 function! StatuslineCurrentHighlight()
     let name = synIDattr(synID(line('.'),col('.'),1),'name')
@@ -168,7 +131,7 @@ nnoremap ; :
 let mapleader = ','
 nnoremap <Leader>a :Ack
 noremap <Leader>, :NERDTreeToggle<cr>
-map <Leader>t :tabnew<cr>
+map <Leader>n :tabnew<cr>
 map <Leader>h :tabprevious<cr>
 map <Leader>l :tabnext<cr>
 map <Leader>w :tabclose<cr>
@@ -182,7 +145,7 @@ map <leader>tts :%s/\s\+$//<cr>
 map <leader>term :ConqueTerm bash<cr>
 map <leader>b :TagbarToggle<cr>
 map <leader>sp :setlocal spell! spelllang=en_us<CR> " toggle spellcheck
-"
+
 " cd to directory of current file
 map <leader>cd :cd %:p:h<cr>
 map <leader>F :NERDTreeFind<cr>
@@ -201,8 +164,6 @@ nmap <leader>s :redir @a<cr>:g//<cr>:redir END<cr>:new<cr>:put! a<cr><cr>zRggd<c
 " Move single lines up-down
 nmap <c-up> ddkP
 nmap <c-down> ddp
-"nmap <c-up [e
-"nmap <c-down> ]e
 
 " Resize vertical windows
 nmap + <c-w>+
@@ -215,8 +176,6 @@ nmap < <c-w><
 " Move multiple lines up-down
 vmap <c-up> xkP`[V`]
 vmap <c-down> xp`[V`]
-"vmap <c-up> [egv
-"vmap <c-down> ]egv
 
 "Insert on empty line, with lines above and below (for mojocasts)
 nmap oo o<Esc>O
@@ -238,10 +197,10 @@ noremap K :!perldoc <cword> <bar><bar> perldoc -f <cword><cr>
 "autocmd VimEnter * wincmd p
 
 " file types
-au BufRead,BufNewFile *.asd,*.lisp set filetype=lisp
 au BufRead,BufNewFile *.t,*.cgi set filetype=perl
-au BufRead,BufNewFile *.conf set filetype=apache
-au BufRead,BufNewFile *.app set filetype=erlang
+au BufRead,BufNewFile *.conf    set filetype=apache
+au BufRead,BufNewFile *.tt2     set filetype=tt2html
+au BufRead,BufNewFile *.tt      set filetype=tt2html
 
 " haskell support (vim2hs)
 let g:haskell_conceal_wide = 1
@@ -263,9 +222,6 @@ au FileType haskell nmap gc :GhcModTypeClear<cr>
 " markdown support - turn-on distraction free writing mode for markdown files
 au BufNewFile,BufRead *.{md,mdown,mkd,mkdn,markdown,mdwn} call DistractionFreeWriting()
 au BufNewFile,BufRead *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown
-
-" compile erlang files
-autocmd BufRead,BufNewFile *.erl nmap <Leader>C :!erlc %<cr>
 
 " save/retrieve folds automatically
 au BufWinLeave * silent! mkview
@@ -302,11 +258,6 @@ endfunction
 
 autocmd BufRead,BufNewFile *.t,*.pl,*.plx,*.pm nmap <Leader>te :let g:testfile = expand("%")<cr>:echo "testfile is now" g:testfile<cr>:call Prove (1,1)<cr>
 
-" markdown
-"augroup mkd
-"autocmd BufRead *.mkd  set ai formatoptions=tcroqn2 comments=n:&gt;
-"augroup END
-
 " open installed perl modules
 au FileType perl command! -nargs=1 PerlModuleSource :tabnew `perldoc -lm <args>`
 au FileType perl setlocal iskeyword+=:
@@ -316,6 +267,9 @@ au FileType perl noremap <leader>P :PerlModuleSource <cword><cr>zR<cr>
 au FileType perl command! -range=% -nargs=* Tidy <line1>,<line2>!perltidy
 au FileType perl nmap <Leader>pt mz:Tidy<cr>'z:delmarks z<cr> " normal mode
 au FileType perl vmap <Leader>pt :Tidy<cr> " visual mode
+
+" include local lib when doing perl syntax checks
+let g:syntastic_perl_lib_path = './lib'
 
 " js, css, & html tidy config (vim-jsbeautify)
 let g:jsbeautify = {'indent_size': 2, 'indent_char': ' ', 'max_char': 5}
