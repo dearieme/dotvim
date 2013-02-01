@@ -14,8 +14,6 @@ call pathogen#infect()
 "silent! call pathogen#runtime_append_all_bundles()
 "silent! call pathogen#helptags()
 
-" turn on indent-guides
-autocmd VimEnter * IndentGuidesEnable
 let g:indent_guides_guide_size=2
 
 set number
@@ -270,11 +268,6 @@ au FileType perl vmap <Leader>pt :Tidy<cr> " visual mode
 
 " include local lib when doing perl syntax checks
 let g:syntastic_perl_lib_path = './lib'
-
-" js, css, & html tidy config (vim-jsbeautify)
-let g:jsbeautify = {'indent_size': 2, 'indent_char': ' ', 'max_char': 5}
-let g:htmlbeautify = {'indent_size': 2, 'indent_char': ' ', 'max_char': 80, 'brace_style': 'expand', 'unformatted': ['a', 'sub', 'sup', 'b', 'i', 'u']}
-let g:csseautify = {'indent_size': 2, 'indent_char': ' ', 'max_char': 80, 'brace_style': 'expand'}
 
 " js
 "au FileType javascript command! -range=% -nargs=* Tidy <line1>,<line2> :call JsBeautify()
