@@ -88,3 +88,6 @@
 [submodule "bundle/markdown"]
 	path = bundle/markdown
 	url = git://github.com/plasticboy/vim-markdown.git
+[submodule "bundle/vimproc"]
+	path = bundle/vimproc
+	url = https://github.com/Shougo/vimproc.git
