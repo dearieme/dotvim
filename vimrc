@@ -184,7 +184,7 @@ au FileType haskell nmap gc :GhcModTypeClear<cr>
 "let &l:statusline = '%{empty(getqflist()) ? "[No Errors]" : "[Errors Found]"}' . (empty(&l:statusline) ? &statusline : &l:statusline)
 
 " markdown support - turn-on distraction free writing mode for markdown files
-au BufNewFile,BufRead *.{md,mdown,mkd,mkdn,markdown,mdwn} call DistractionFreeWriting()
+au BufNewFile,BufRead *.{md,mdown,mkd,mkdn,markdown,mdwn}
 au BufNewFile,BufRead *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown
 
 " save/retrieve folds automatically
@@ -337,18 +337,3 @@ function! DoPrettyXML()
 endfunction
 "command! PrettyXML call DoPrettyXML()
 
-function DistractionFreeWriting()
-    colorscheme iawriter
-    set background=light
-    set gfn=Cousine:h14                " font to use
-    set lines=40 columns=120           " size of the editable area
-    set listchars=tab:▸\ ,extends:#,nbsp:.,trail:.
-    set guioptions-=r                  " remove right scrollbar
-    set laststatus=0                   " don't show status line
-    set noruler                        " don't show ruler
-    set linebreak                      " break the lines on words
-    set nocursorline
-    set nocursorcolumn
-    set nonumber
-    set cc=
-endfunction
