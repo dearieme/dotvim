@@ -233,7 +233,7 @@ au FileType perl nmap <Leader>pt mz:Tidy<cr>'z:delmarks z<cr>  " normal mode
 au FileType perl vmap <Leader>pt :Tidy<cr>                     " visual mode
 
 " include local lib when doing perl syntax checks
-let g:syntastic_perl_lib_path = './lib'
+let g:syntastic_perl_lib_path = './lib,./t/lib'
 
 " ack shortcut
 let g:ackprg="ack-grep -H --nocolor --nogroup --column"
