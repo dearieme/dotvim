@@ -108,7 +108,6 @@ map <Leader>l :tabnext<cr>
 map <Leader>w :tabclose<cr>
 map <Leader>pd :!perldoc %<cr>
 map <Leader>f :TlistToggle<cr>
-map <Leader>M :!morbo %<cr>
 map <Leader>x :!perl -Ilib %<cr>
 map <leader>tts :%s/\s\+$//<cr>
 map <leader>term :ConqueTerm bash<cr>
@@ -144,7 +143,7 @@ nmap < <c-w><
 vmap <c-up> xkP`[V`]
 vmap <c-down> xp`[V`]
 
-"Insert on empty line, with lines above and below (for mojocasts)
+" Insert on empty line, with lines above and below
 nmap oo o<Esc>O
 
 " autocompletion
@@ -285,20 +284,6 @@ function! StatuslineCurrentHighlight()
     else
         return '[' . name . ']'
     endif
-endfunction
-
-function! ScreencastPrep()
-  " disable blinking cursor
-  set guicursor+=n:hor10-blinkon0 
-  " disable autocomplete
-  AcpDisable
-  " disable colorcolumn
-  set colorcolumn=0
-  "set guifont=Menlo:h14
-  set guifont=Monaco:h14
-  set ts=2
-  set sw=2
-  NoMatchParen "opposite: DoMatchParen
 endfunction
 
 function! s:check_and_lint()
