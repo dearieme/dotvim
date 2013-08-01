@@ -149,13 +149,6 @@ nmap oo o<Esc>O
 " autocompletion
 imap <Leader><Tab> <C-X><C-O>
 
-" Autocomplpop perl autocompletion
-"let g:acp_behaviorPerlOmniLength = 4
-"let g:acp_completeoptPreview = 0
-
-" local set in perlomni.vim plugin does not work as expected..set globally
-"set omnifunc=PerlComplete
-
 " perldoc for module || perl command
 noremap K :!perldoc <cword> <bar><bar> perldoc -f <cword><cr>
 
@@ -167,20 +160,8 @@ au BufRead,BufNewFile *.tt      set filetype=tt2html
 
 " haskell support (vim2hs)
 let g:haskell_conceal_wide = 1
-let g:neocomplcache_enable_at_startup = 1
-let g:acp_enableAtStartup = 0
-let g:neocomplcache_enable_smart_case = 1
-let g:neocomplcache_enable_camel_case_completion = 1
-let g:neocomplcache_enable_underbar_completion = 1
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-"au FileType haskell nmap <Leader>gt :GhcModType<cr>
-"au FileType haskell nmap <Leader>gc :GhcModTypeClear<cr>
 au FileType haskell nmap gt :GhcModType<cr>
 au FileType haskell nmap gc :GhcModTypeClear<cr>
-"autocmd BufWritePost *.hs call s:check_and_lint()
-"autocmd BufWritePost *.hs GhcModCheckAsync
-"let &l:statusline = '%{empty(getqflist()) ? "[No Errors]" : "[Errors Found]"}' . (empty(&l:statusline) ? &statusline : &l:statusline)
 
 " markdown support - turn-on distraction free writing mode for markdown files
 au BufNewFile,BufRead *.{md,mdown,mkd,mkdn,markdown,mdwn}
