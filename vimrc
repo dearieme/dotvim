@@ -214,6 +214,7 @@ au FileType perl vmap <Leader>pt :Tidy<cr>                     " visual mode
 
 " include local lib when doing perl syntax checks
 let g:syntastic_perl_lib_path = './lib,./t/lib'
+let g:syntastic_ignore_files = ['\m\c\.t$']
 
 " ack shortcut
 let g:ackprg="ack-grep -H --nocolor --nogroup --column"
