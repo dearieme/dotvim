@@ -9,10 +9,17 @@ if strlen($SUDO_USER)
     let luser = $SUDO_USER
 endif
 
+if &term =~ '^screen'
+    " tmux will send xterm-style keys when its xterm-keys option is on
+    execute "set <xUp>=\e[1;*A"
+    execute "set <xDown>=\e[1;*B"
+    execute "set <xRight>=\e[1;*C"
+    execute "set <xLeft>=\e[1;*D"
+endif
+
 " pathogen
 call pathogen#infect()
-"silent! call pathogen#runtime_append_all_bundles()
-"silent! call pathogen#helptags()
+silent! call pathogen#helptags()
 
 let g:indent_guides_guide_size=2
 
@@ -110,7 +117,7 @@ map <Leader>pd :!perldoc %<cr>
 map <Leader>f :TlistToggle<cr>
 map <Leader>x :!perl -Ilib %<cr>
 map <leader>tts :%s/\s\+$//<cr>
-map <leader>term :ConqueTerm bash<cr>
+"map <leader>term :ConqueTerm bash<cr>
 map <leader>b :TagbarToggle<cr>
 map <leader>sp :setlocal spell! spelllang=en_GB<CR>  " toggle spellcheck
 
@@ -171,8 +178,6 @@ au BufNewFile,BufRead *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown
 au BufWinLeave * silent! mkview
 au BufWinEnter * silent! loadview
 
-" ,T perl tests
-"nmap <Leader>T :let g:testfile = expand("%")<cr>:echo "testfile is now" g:testfile<cr>:call Prove (1,1)<cr>
 function! Prove ( verbose, taint )
     if ! exists("g:testfile")
         let g:testfile = "t/*.t"
@@ -185,9 +190,7 @@ function! Prove ( verbose, taint )
 "        if a:taint
 "            let s:params = s:params . "t"
 "        endif
-        "execute !HARNESS_PERL_SWITCHES=-MDevel::Cover prove -" . s:params . " " . g:testfile
-        execute "!prove --timer --normalize --state=save -" . s:params . " " . g:testfile
-      "TEST_VERBOSE=1 prove -lvc --timer --normalize --state=save
+        execute "!TEST_POD=1 prove --timer --normalize --state=save --merge -" . s:params . " " . g:testfile
     else
        call Compile ()
     endif
@@ -200,7 +203,7 @@ function! Compile ()
     execute "!perl -wc -Ilib " . g:compilefile
 endfunction
 
-autocmd BufRead,BufNewFile *.t,*.pl,*.plx,*.pm nmap <Leader>te :let g:testfile = expand("%")<cr>:echo "testfile is now" g:testfile<cr>:call Prove (1,1)<cr>
+autocmd BufRead,BufNewFile *.t,*.pl,*.plx,*.pm nmap <Leader>T :let g:testfile = expand("%")<cr>:echo "testfile is now" g:testfile<cr>:call Prove (1,1)<cr>
 
 " open installed perl modules
 au FileType perl command! -nargs=1 PerlModuleSource :tabnew `perldoc -lm <args>`
