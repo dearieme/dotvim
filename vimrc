@@ -153,6 +153,9 @@ vmap <c-down> xp`[V`]
 " Insert on empty line, with lines above and below
 nmap oo o<Esc>O
 
+" visually select whole sub/method
+nmap <leader>v v2aBV
+
 " autocompletion
 imap <Leader><Tab> <C-X><C-O>
 
