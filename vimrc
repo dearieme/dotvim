@@ -193,7 +193,7 @@ function! Prove ( verbose, taint )
 "        if a:taint
 "            let s:params = s:params . "t"
 "        endif
-        execute "!TEST_POD=1 prove --timer --normalize --state=save --merge -" . s:params . " " . g:testfile
+        execute "!TEST_POD=1 prove --timer --normalize --merge -" . s:params . " " . g:testfile
     else
        call Compile ()
     endif
@@ -295,7 +295,7 @@ function! DoPrettyXML()
   0put ='<PrettyXML>'
   $put ='</PrettyXML>'
 
-  silent %!xmllint --format -
+  silent %!xmllint --format --nowarning -
 
   " delete the fake tags
   2d
@@ -308,5 +308,5 @@ function! DoPrettyXML()
   " restore the filetype
   exe "set ft=" . l:origft
 endfunction
-"command! PrettyXML call DoPrettyXML()
+command! PrettyXML call DoPrettyXML()
 
