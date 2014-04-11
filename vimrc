@@ -107,6 +107,16 @@ let mojo_highlight_data = 1
 inoremap jj <Esc>
 nnoremap ; :
 
+" Cold turkey on arrow key addiction
+inoremap  <Up>     <NOP>
+inoremap  <Down>   <NOP>
+inoremap  <Left>   <NOP>
+inoremap  <Right>  <NOP>
+noremap   <Up>     <NOP>
+noremap   <Down>   <NOP>
+noremap   <Left>   <NOP>
+noremap   <Right>  <NOP>
+
 let mapleader = ','
 noremap <Leader>, :NERDTreeToggle<cr>
 map <Leader>n :tabnew<cr>
