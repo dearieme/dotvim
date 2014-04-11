@@ -43,9 +43,6 @@
 [submodule "bundle/haskell-templates"]
 	path = bundle/haskell-templates
 	url = git://github.com/pbrisbin/html-template-syntax.git
-[submodule "bundle/conque"]
-	path = bundle/conque
-	url = git://github.com/tempire/conque.git
 [submodule "bundle/haskellmode-vim"]
 	path = bundle/haskellmode-vim
 	url = git://github.com/lukerandall/haskellmode-vim.git
@@ -55,9 +52,6 @@
 [submodule "bundle/webapi"]
 	path = bundle/webapi
 	url = git://github.com/mattn/webapi-vim.git
-[submodule "bundle/tagbar"]
-	path = bundle/tagbar
-	url = git://github.com/vim-scripts/Tagbar.git
 [submodule "bundle/vim2hs"]
 	path = bundle/vim2hs
 	url = git://github.com/dag/vim2hs.git
