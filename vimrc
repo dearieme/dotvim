@@ -106,6 +106,7 @@ let mojo_highlight_data = 1
 " shortcuts
 inoremap jj <Esc>
 nnoremap ; :
+:nnoremap <F5> :buffers<CR>:buffer<Space>
 
 " Cold turkey on arrow key addiction
 inoremap  <Up>     <NOP>
@@ -232,6 +233,11 @@ let g:syntastic_ignore_files = ['\m\c\.t$']
 
 " ack shortcut
 let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+
+" To use gf with perl "
+set path+=$PWD/**,
+set path+=/usr/lib/perl5/**,
+set path+=/usr/share/perl5/**,
 
 inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
 
