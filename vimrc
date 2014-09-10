@@ -173,19 +173,17 @@ imap <Leader><Tab> <C-X><C-O>
 noremap K :!perldoc <cword> <bar><bar> perldoc -f <cword><cr>
 
 " file types
-au BufRead,BufNewFile *.t,*.cgi set filetype=perl
-au BufRead,BufNewFile *.conf    set filetype=apache
-au BufRead,BufNewFile *.tt2     set filetype=tt2html
-au BufRead,BufNewFile *.tt      set filetype=tt2html
+au BufRead,BufNewFile *.t,*.cgi    set filetype=perl
+au BufRead,BufNewFile *.conf       set filetype=apache
+au BufRead,BufNewFile *.tt2        set filetype=tt2html
+au BufRead,BufNewFile *.tt         set filetype=tt2html
+au BufRead,BufNewFile *.tracwiki   set filetype=tracwiki
+au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown
 
 " haskell support (vim2hs)
 let g:haskell_conceal_wide = 1
 au FileType haskell nmap gt :GhcModType<cr>
 au FileType haskell nmap gc :GhcModTypeClear<cr>
-
-" markdown support - turn-on distraction free writing mode for markdown files
-au BufNewFile,BufRead *.{md,mdown,mkd,mkdn,markdown,mdwn}
-au BufNewFile,BufRead *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown
 
 " save/retrieve folds automatically
 au BufWinLeave * silent! mkview
