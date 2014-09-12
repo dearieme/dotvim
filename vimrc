@@ -241,6 +241,7 @@ set path+=$PWD/**,
 set path+=/usr/lib/perl5/**,
 set path+=/usr/share/perl5/**,
 
+
 inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
 
 " Automatic tabularize with pipes |
