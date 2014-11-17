@@ -61,6 +61,9 @@ set noswapfile
 set numberwidth=5  " line tracking
 set cursorline
 
+let g:buftabline_numbers=1
+let g:buftabline_indicators=1
+
 " clear recent search highlighting with space
 :nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 
