@@ -120,16 +120,12 @@ noremap   <Right>  <NOP>
 
 let mapleader = ','
 noremap <Leader>, :NERDTreeToggle<cr>
-map <Leader>n :tabnew<cr>
-map <Leader>h :tabprevious<cr>
-map <Leader>l :tabnext<cr>
-map <Leader>w :tabclose<cr>
+map <Leader>h :bnext<cr>
+map <Leader>l :bprev<cr>
 map <Leader>pd :!perldoc %<cr>
 map <Leader>f :TlistToggle<cr>
 map <Leader>x :!perl -Ilib %<cr>
 map <leader>tts :%s/\s\+$//<cr>
-"map <leader>term :ConqueTerm bash<cr>
-map <leader>b :TagbarToggle<cr>
 map <leader>sp :setlocal spell! spelllang=en_GB<CR>  " toggle spellcheck
 
 map <leader>cd :cd %:p:h<cr>         " cd to directory of current file
@@ -176,8 +172,7 @@ noremap K :!perldoc <cword> <bar><bar> perldoc -f <cword><cr>
 " file types
 au BufRead,BufNewFile *.t,*.cgi    set filetype=perl
 au BufRead,BufNewFile *.conf       set filetype=apache
-au BufRead,BufNewFile *.tt2        set filetype=tt2html
-au BufRead,BufNewFile *.tt         set filetype=tt2html
+au BufRead,BufNewFile *.{tt,tt2}   set filetype=tt2html
 au BufRead,BufNewFile *.tracwiki   set filetype=tracwiki
 au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown
 
@@ -238,7 +233,6 @@ let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 set path+=$PWD/**,
 set path+=/usr/lib/perl5/**,
 set path+=/usr/share/perl5/**,
-
 
 inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
 
