@@ -73,6 +73,14 @@ cmap w!! w !sudo tee % >/dev/null
 set list
 set listchars=tab:.\ ,trail:.,extends:#,nbsp:.
 
+" lightline
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'component': {
+      \   'readonly': '%{&readonly?"⭤":""}',
+      \ }
+      \ }
+
 " status bar
 set statusline=%f\                                " tail of the filename
 set statusline+=%{fugitive#statusline()}          " git branch
