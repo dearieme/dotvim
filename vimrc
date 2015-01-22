@@ -77,8 +77,10 @@ set listchars=tab:.\ ,trail:.,extends:#,nbsp:.
 let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ 'component': {
-      \   'readonly': '%{&readonly?"⭤":""}',
-      \ }
+      \   'readonly': '%{&readonly?"":""}',
+      \ },
+      \ 'separator': { 'left': '', 'right': '' },
+      \ 'subseparator': { 'left': '', 'right': '' }
       \ }
 
 " status bar
