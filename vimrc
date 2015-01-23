@@ -33,9 +33,6 @@ set t_Co=256
 syntax on
 colorscheme bakedbeans
 
-" folding
-"let perl_fold=1
-"let perl_extended_vars = 1
 set foldmethod=indent
 
 " backspaces over everything in insert mode
@@ -74,38 +71,124 @@ set list
 set listchars=tab:.\ ,trail:.,extends:#,nbsp:.
 
 " lightline
+set laststatus=2            " always show status line
 let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ 'component': {
-      \   'readonly': '%{&readonly?"":""}',
+      \ 'colorscheme': 'jellybeans',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ], ['ctrlpmark'] ],
+      \   'right': [ [ 'syntastic', 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
+      \ },
+      \ 'component_function': {
+      \   'fugitive': 'MyFugitive',
+      \   'filename': 'MyFilename',
+      \   'fileformat': 'MyFileformat',
+      \   'filetype': 'MyFiletype',
+      \   'fileencoding': 'MyFileencoding',
+      \   'mode': 'MyMode',
+      \   'ctrlpmark': 'CtrlPMark',
+      \ },
+      \ 'component_expand': {
+      \   'syntastic': 'SyntasticStatuslineFlag',
+      \ },
+      \ 'component_type': {
+      \   'syntastic': 'error',
       \ },
       \ 'separator': { 'left': '', 'right': '' },
       \ 'subseparator': { 'left': '', 'right': '' }
       \ }
 
-" status bar
-set statusline=%f\                                " tail of the filename
-set statusline+=%{fugitive#statusline()}          " git branch
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}      " syntax errors
-set statusline+=%*
+function! MyModified()
+  return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
 
-set statusline+=%=                                " left/right separator
-set statusline+=%{StatuslineCurrentHighlight()}\  " current highlight
-set statusline+=%c,                               " cursor column
-set statusline+=%l/%L                             " cursor line/total lines
-set statusline+=\ %P\                             " percent through file
-set laststatus=2                                  " always show status line
+function! MyReadonly()
+  return &ft !~? 'help' && &readonly ? '' : ''
+endfunction
 
-" warning for mixed indenting
-set statusline+=%#error#
-set statusline+=%{StatuslineMixedIndentingWarning()}
-set statusline+=%*
+function! MyFilename()
+  let fname = expand('%:t')
+  return fname == 'ControlP' ? g:lightline.ctrlp_item :
+        \ fname == '__Tagbar__' ? g:lightline.fname :
+        \ fname =~ 'NERD_tree' ? '' :
+        \ ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
+        \ ('' != fname ? fname : '[No Name]') .
+        \ ('' != MyModified() ? ' ' . MyModified() : '')
+endfunction
 
-set statusline+=%h                                " help file flag
-set statusline+=%y                                " filetype
-set statusline+=%r                                " read only flag
-set statusline+=%m                                " modified flag
+function! MyFugitive()
+  try
+    if expand('%:t') !~? 'Tagbar\|NERD' && exists('*fugitive#head')
+      let mark = ' '
+      let _ = fugitive#head()
+      return strlen(_) ? mark._ : ''
+    endif
+  catch
+  endtry
+  return ''
+endfunction
+
+function! MyFileformat()
+  return winwidth(0) > 70 ? &fileformat : ''
+endfunction
+
+function! MyFiletype()
+  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
+endfunction
+
+function! MyFileencoding()
+  return winwidth(0) > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
+endfunction
+
+function! MyMode()
+  let fname = expand('%:t')
+  return fname == '__Tagbar__' ? 'Tagbar' :
+        \ fname == 'ControlP' ? 'CtrlP' :
+        \ fname =~ 'NERD_tree' ? 'NERDTree' :
+        \ winwidth(0) > 60 ? lightline#mode() : ''
+endfunction
+
+function! CtrlPMark()
+  if expand('%:t') =~ 'ControlP'
+    call lightline#link('iR'[g:lightline.ctrlp_regex])
+    return lightline#concatenate([g:lightline.ctrlp_prev, g:lightline.ctrlp_item
+          \ , g:lightline.ctrlp_next], 0)
+  else
+    return ''
+  endif
+endfunction
+
+let g:ctrlp_status_func = {
+  \ 'main': 'CtrlPStatusFunc_1',
+  \ 'prog': 'CtrlPStatusFunc_2',
+  \ }
+
+function! CtrlPStatusFunc_1(focus, byfname, regex, prev, item, next, marked)
+  let g:lightline.ctrlp_regex = a:regex
+  let g:lightline.ctrlp_prev = a:prev
+  let g:lightline.ctrlp_item = a:item
+  let g:lightline.ctrlp_next = a:next
+  return lightline#statusline(0)
+endfunction
+
+function! CtrlPStatusFunc_2(str)
+  return lightline#statusline(0)
+endfunction
+
+let g:tagbar_status_func = 'TagbarStatusFunc'
+
+function! TagbarStatusFunc(current, sort, fname, ...) abort
+    let g:lightline.fname = a:fname
+  return lightline#statusline(0)
+endfunction
+
+augroup AutoSyntastic
+  autocmd!
+  autocmd BufWritePost *.pm,*.c,*.cpp call s:syntastic()
+augroup END
+function! s:syntastic()
+  SyntasticCheck
+  call lightline#update()
+endfunction
 
 " Sidebar folder navigation
 let NERDTreeShowLineNumbers=1
@@ -296,6 +379,7 @@ function! StatuslineCurrentHighlight()
     endif
 endfunction
 
+" Haskell
 function! s:check_and_lint()
   let l:qflist = ghcmod#make('check')
   call extend(l:qflist, ghcmod#make('lint'))
