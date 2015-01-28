@@ -258,8 +258,7 @@ au BufRead,BufNewFile *.{tt,tt2}   set filetype=tt2html
 au BufRead,BufNewFile *.tracwiki   set filetype=tracwiki
 au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown
 
-" haskell support (vim2hs)
-let g:haskell_conceal_wide = 1
+" haskell support
 au FileType haskell nmap gt :GhcModType<cr>
 au FileType haskell nmap gc :GhcModTypeClear<cr>
 
@@ -301,8 +300,10 @@ au FileType perl command! -range=% -nargs=* Tidy <line1>,<line2>!perltidy
 au FileType perl nmap <Leader>pt mz:Tidy<cr>'z:delmarks z<cr>  " normal mode
 au FileType perl vmap <Leader>pt :Tidy<cr>                     " visual mode
 
-" include local lib when doing perl syntax checks
-let g:syntastic_perl_lib_path = './lib,./t/lib'
+" perl syntastic
+let g:syntastic_perl_checkers = ['perl']
+let g:syntastic_enable_perl_checker = 1
+let g:syntastic_perl_lib_path = ['./lib', './t/lib']
 let g:syntastic_ignore_files = ['\m\c\.t$']
 
 " ack shortcut
