@@ -137,7 +137,7 @@ let g:lightline = {
       \ 'colorscheme': 'jellybeans',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ], ['ctrlpmark'] ],
-      \   'right': [ [ 'syntastic', 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
+      \   'right': [ [ 'mixedindent', 'syntastic', 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
       \ },
       \ 'component_function': {
       \   'fugitive': 'MyFugitive',
@@ -150,9 +150,11 @@ let g:lightline = {
       \ },
       \ 'component_expand': {
       \   'syntastic': 'SyntasticStatuslineFlag',
+      \   'mixedindent': 'MixedIndentingWarning'
       \ },
       \ 'component_type': {
       \   'syntastic': 'error',
+      \   'mixedindent': 'error'
       \ },
       \ 'separator': { 'left': '', 'right': '' },
       \ 'subseparator': { 'left': '', 'right': '' }
@@ -251,6 +253,22 @@ function! s:syntastic()
   call lightline#update()
 endfunction
 
+function! MixedIndentingWarning()
+    if !exists("b:statusline_tab_warning")
+        let tabs = search('^\t', 'nw') != 0
+        let spaces = search('^ ', 'nw') != 0
+
+        if tabs && spaces
+            let b:statusline_tab_warning =  '[mixed-indenting]'
+        elseif (spaces && !&et) || (tabs && &et)
+            let b:statusline_tab_warning = '[&et]'
+        else
+            let b:statusline_tab_warning = ''
+        endif
+    endif
+    return b:statusline_tab_warning
+endfunction
+
 " file types
 au BufRead,BufNewFile *.t,*.cgi    set filetype=perl
 au BufRead,BufNewFile *.conf       set filetype=apache
@@ -291,7 +309,7 @@ endfunction
 autocmd BufRead,BufNewFile *.t,*.pl,*.plx,*.pm nmap <Leader>T :let g:testfile = expand("%")<cr>:echo "testfile is now" g:testfile<cr>:call Prove (1,1)<cr>
 
 " open installed perl modules
-au FileType perl command! -nargs=1 PerlModuleSource :tabnew `perldoc -lm <args>`
+au FileType perl command! -nargs=1 PerlModuleSource :execute 'e' system('perldoc -lm <args>')
 au FileType perl setlocal iskeyword+=:
 au FileType perl noremap <leader>P :PerlModuleSource <cword><cr>zR<cr>
 
@@ -310,6 +328,7 @@ let g:syntastic_ignore_files = ['\m\c\.t$']
 let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 
 " To use gf with perl "
+set path+=$PWD/lib,
 set path+=$PWD/**,
 set path+=/usr/lib/perl5/**,
 set path+=/usr/share/perl5/**,
