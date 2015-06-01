@@ -101,14 +101,6 @@ nmap <leader>s :redir @a<cr>:g//<cr>:redir END<cr>:new<cr>:put! a<cr><cr>zRggd<c
 nmap <c-up> ddkP
 nmap <c-down> ddp
 
-" Resize vertical windows
-nmap + <c-w>+
-nmap _ <c-w>-
-
-" Resize horizontal windows
-nmap > <c-w>>
-nmap < <c-w><
-
 " Move multiple lines up-down
 vmap <c-up> xkP`[V`]
 vmap <c-down> xp`[V`]
