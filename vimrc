@@ -67,7 +67,6 @@ let NERDTreeWinSize=35
 
 " shortcuts
 inoremap jj <Esc>
-nnoremap ; :
 :nnoremap <F5> :buffers<CR>:buffer<Space>
 
 " Cold turkey on arrow key addiction
