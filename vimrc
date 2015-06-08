@@ -48,10 +48,6 @@ set noswapfile
 set numberwidth=5  " line tracking
 set cursorline
 
-let g:buftabline_numbers=1
-let g:buftabline_indicators=1
-let g:indent_guides_guide_size=2
-
 set list
 set listchars=tab:.\ ,trail:.,extends:#,nbsp:.
 

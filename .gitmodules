@@ -46,15 +46,9 @@
 [submodule "bundle/vimproc"]
 	path = bundle/vimproc
 	url = https://github.com/Shougo/vimproc.git
-[submodule "bundle/buftabline"]
-	path = bundle/buftabline
-	url = https://github.com/ap/vim-buftabline.git
 [submodule "bundle/lightline"]
 	path = bundle/lightline
 	url = https://github.com/itchyny/lightline.vim
 [submodule "bundle/ack"]
 	path = bundle/ack
 	url = https://github.com/mileszs/ack.vim.git
-[submodule "bundle/dbext"]
-	path = bundle/dbext
-	url = https://github.com/vim-scripts/dbext.vim.git
