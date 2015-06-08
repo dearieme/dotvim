@@ -42,7 +42,7 @@ set visualbell
 set noerrorbells
 set hlsearch
 set history=500
-set scrolloff=10   " Scroll with 10 line buffer
+set scrolloff=8   " Scroll with 8 line buffer
 set nobackup
 set noswapfile
 set numberwidth=5  " line tracking
@@ -74,6 +74,10 @@ noremap   <Up>     <NOP>
 noremap   <Down>   <NOP>
 noremap   <Left>   <NOP>
 noremap   <Right>  <NOP>
+
+" Get <C-n/p> to filter command history
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
 
 let mapleader = ','
 noremap <Leader>, :NERDTreeToggle<cr>
