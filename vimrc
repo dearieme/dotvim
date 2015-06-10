@@ -33,7 +33,6 @@ set smartindent
 set expandtab
 set textwidth=79
 set formatoptions=qrn1
-set foldmethod=indent
 set backspace=indent,eol,start
 set incsearch
 set ignorecase
@@ -50,10 +49,6 @@ set cursorline
 
 set list
 set listchars=tab:.\ ,trail:.,extends:#,nbsp:.
-
-" save/retrieve folds automatically
-au BufWinLeave * silent! mkview
-au BufWinEnter * silent! loadview
 
 " Sidebar folder navigation
 let NERDTreeShowLineNumbers=1
@@ -78,6 +73,15 @@ noremap   <Right>  <NOP>
 " Get <C-n/p> to filter command history
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
+
+" Expansion of active file directory
+cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
+
+" Easy buffer navigation
+nnoremap <silent> [b :bprevious<CR>
+nnoremap <silent> ]b :bnext<CR>
+nnoremap <silent> [B :bfirst<CR>
+nnoremap <silent> ]B :blast<CR>
 
 let mapleader = ','
 noremap <Leader>, :NERDTreeToggle<cr>
