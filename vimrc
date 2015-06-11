@@ -84,7 +84,6 @@ nnoremap <silent> [B :bfirst<CR>
 nnoremap <silent> ]B :blast<CR>
 
 let mapleader = ','
-noremap <Leader>, :NERDTreeToggle<cr>
 map <Leader>h :bnext<cr>
 map <Leader>l :bprev<cr>
 map <Leader>pd :!perldoc %<cr>
