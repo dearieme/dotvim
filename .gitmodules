@@ -13,18 +13,12 @@
 [submodule "bundle/tlib"]
 	path = bundle/tlib
 	url = git://github.com/tomtom/tlib_vim.git
-[submodule "bundle/ctrlp"]
-	path = bundle/ctrlp
-	url = git://github.com/kien/ctrlp.vim.git
 [submodule "bundle/ghcmod"]
 	path = bundle/ghcmod
 	url = git://github.com/eagletmt/ghcmod-vim.git
 [submodule "bundle/syntastic"]
 	path = bundle/syntastic
 	url = git://github.com/scrooloose/syntastic.git
-[submodule "bundle/html-template-syntax"]
-	path = bundle/html-template-syntax
-	url = git://github.com/pbrisbin/html-template-syntax.git
 [submodule "bundle/indent-guides"]
 	path = bundle/indent-guides
 	url = git://github.com/nathanaelkane/vim-indent-guides.git
