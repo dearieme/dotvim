@@ -322,10 +322,6 @@ let g:syntastic_ignore_files = ['\m\c\.t$']
 let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 
 " To use gf with perl "
-set path+=$PWD/lib,
-set path+=$PWD/**,
-set path+=/usr/lib/perl5/**,
-set path+=/usr/share/perl5/**,
 
 " Haskell
 function! s:check_and_lint()
