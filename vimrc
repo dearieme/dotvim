@@ -113,9 +113,6 @@ nmap oo o<Esc>O
 " visually select whole sub/method
 nmap <leader>v v2aBV
 
-" autocompletion
-imap <Leader><Tab> <C-X><C-O>
-
 " clear recent search highlighting with space
 :nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 
