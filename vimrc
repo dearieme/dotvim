@@ -24,31 +24,30 @@ syntax on
 set t_Co=256
 colorscheme bakedbeans
 
-set nocompatible
-set number
 set autoindent
-set tabstop=2
-set shiftwidth=2
-set smartindent
-set expandtab
-set textwidth=79
-set formatoptions=qrn1
 set backspace=indent,eol,start
-set incsearch
-set ignorecase
-set smartcase
-set visualbell
-set noerrorbells
-set hlsearch
-set history=500
-set scrolloff=8   " Scroll with 8 line buffer
-set nobackup
-set noswapfile
-set numberwidth=5  " line tracking
 set cursorline
-
+set expandtab
+set formatoptions+=q,r,n,1,j
+set history=500
+set hlsearch
+set ignorecase
+set incsearch
 set list
 set listchars=tab:.\ ,trail:.,extends:#,nbsp:.
+set nobackup
+set nocompatible
+set noerrorbells
+set noswapfile
+set number
+set numberwidth=5  " line tracking
+set scrolloff=8   " Scroll with 8 line buffer
+set shiftwidth=2
+set smartcase
+set smartindent
+set tabstop=2
+set textwidth=79
+set visualbell
 
 " Sidebar folder navigation
 let NERDTreeShowLineNumbers=1
