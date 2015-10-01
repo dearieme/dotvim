@@ -12,6 +12,10 @@ if &term =~ '^screen'
     execute "set <xLeft>=\e[1;*D"
 endif
 
+" set path for local perl modules *before* vim-perl gets loaded as it does some
+" mad batshit
+set path+=lib
+
 " get pathogen to load the plugins
 call pathogen#infect()
 silent! call pathogen#helptags()
