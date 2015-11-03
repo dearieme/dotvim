@@ -241,10 +241,6 @@ au BufRead,BufNewFile *.{tt,tt2}   set filetype=tt2html
 au BufRead,BufNewFile *.tracwiki   set filetype=tracwiki
 au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown
 
-" haskell support
-au FileType haskell nmap gt :GhcModType<cr>
-au FileType haskell nmap gc :GhcModTypeClear<cr>
-
 " Perl tests
 function! Prove ( verbose, taint )
     if ! exists("g:testfile")
@@ -291,19 +287,6 @@ let g:syntastic_ignore_files = ['\m\c\.t$']
 
 " ack shortcut
 let g:ackprg="ack-grep -H --nocolor --nogroup --column"
-
-" To use gf with perl "
-
-" Haskell
-function! s:check_and_lint()
-  let l:qflist = ghcmod#make('check')
-  call extend(l:qflist, ghcmod#make('lint'))
-  call setqflist(l:qflist)
-  cwindow
-  if empty(l:qflist)
-    echo "No errors found"
-  endif
-endfunction
 
 function! DoPrettyXML()
   " save the filetype so we can restore it later
