@@ -331,3 +331,16 @@ function! DoPrettyXML()
 endfunction
 command! PrettyXML call DoPrettyXML()
 
+" Open notes file for this branch, depends on fugitive
+function! OpenNotes()
+  try
+    if exists('*fugitive#head')
+      let _ = fugitive#head()
+      let notefile = "~/dev/NOTES/" . _ . ".mkd"
+      execute "e" notefile
+    endif
+  catch
+  endtry
+endfunction
+command! OpenNotes call OpenNotes()
+noremap <Leader>D :OpenNotes<cr>
