@@ -336,7 +336,7 @@ function! OpenNotes()
   try
     if exists('*fugitive#head')
       let _ = fugitive#head()
-      let notefile = "~/dev/NOTES/" . _ . ".mkd"
+      let notefile = "~/dev/NOTES/tickets/" . _ . ".mkd"
       execute "e" notefile
     endif
   catch
