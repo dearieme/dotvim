@@ -113,6 +113,11 @@ map <leader>cd :cd %:p:h<cr>         " cd to directory of current file
 map <leader>F :NERDTreeFind<cr>
 map <leader>R :source ~/.vimrc<cr>
 
+" Gitv
+nmap <leader>gv :Gitv --all --no-merges<cr>
+nmap <leader>gV :Gitv! --all --no-merges<cr>
+vmap <leader>gV :Gitv! --all --no-merges<cr>
+
 " http://vim.wikia.com/wiki/Redirect_g_search_output
 nmap <leader>s :redir @a<cr>:g//<cr>:redir END<cr>:new<cr>:put! a<cr><cr>zRggd<cr>
 
