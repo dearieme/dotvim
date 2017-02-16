@@ -300,9 +300,6 @@ let g:syntastic_enable_perl_checker = 1
 let g:syntastic_perl_lib_path = ['./lib', './t/lib']
 let g:syntastic_ignore_files = ['\m\c\.t$']
 
-" ack shortcut
-let g:ackprg="ack-grep -H --nocolor --nogroup --column"
-
 function! DoPrettyXML()
   " save the filetype so we can restore it later
   let l:origft = &ft
