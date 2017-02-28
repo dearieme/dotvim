@@ -300,6 +300,8 @@ au FileType perl nmap <Leader>pt mz:Tidy<cr>'z:delmarks z<cr>  " normal mode
 au FileType perl vmap <Leader>pt :Tidy<cr>                     " visual mode
 
 " perl syntastic
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
 let g:syntastic_perl_checkers = ['perl']
 let g:syntastic_enable_perl_checker = 1
 let g:syntastic_perl_lib_path = ['./lib', './t/lib']
