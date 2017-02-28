@@ -84,12 +84,6 @@ cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 nnoremap & :&&<CR>
 xnoremap & :&&<CR>
 
-" Easy buffer navigation
-nnoremap <silent> [b :bprevious<CR>
-nnoremap <silent> ]b :bnext<CR>
-nnoremap <silent> [B :bfirst<CR>
-nnoremap <silent> ]B :blast<CR>
-
 " Search for visual selection with */#
 xnoremap * :<C-u>call <SID>VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
 xnoremap # :<C-u>call <SID>VSetSearch('?')<CR>?<C-R>=@/<CR><CR>
@@ -304,6 +298,9 @@ let g:syntastic_perl_checkers = ['perl']
 let g:syntastic_enable_perl_checker = 1
 let g:syntastic_perl_lib_path = ['./lib', './t/lib']
 let g:syntastic_ignore_files = ['\m\c\.t$']
+
+" Ack
+let g:ackhighlight = 1
 
 function! DoPrettyXML()
   " save the filetype so we can restore it later
