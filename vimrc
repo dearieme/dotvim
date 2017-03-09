@@ -138,6 +138,8 @@ cmap w!! w !sudo tee % >/dev/null
 " perldoc for module || perl command
 noremap K :!perldoc <cword> <bar><bar> perldoc -f <cword><cr>
 
+autocmd BufReadPost fugitive://* set bufhidden=delete
+
 " lightline
 set laststatus=2            " always show status line
 let g:lightline = {
@@ -303,6 +305,7 @@ let g:syntastic_ignore_files = ['\m\c\.t$']
 
 " Ack
 let g:ackhighlight = 1
+let g:ack_default_options = " -H --nocolor --nogroup --column"
 
 function! DoPrettyXML()
   " save the filetype so we can restore it later
