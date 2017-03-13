@@ -98,7 +98,6 @@ endfunction
 map <Leader>h :bnext<cr>
 map <Leader>l :bprev<cr>
 map <Leader>pd :!perldoc %<cr>
-map <Leader>f :TlistToggle<cr>
 map <Leader>x :!perl -Ilib %<cr>
 map <leader>tts :%s/\s\+$//<cr>
 map <leader>sp :setlocal spell! spelllang=en_GB<CR>  " toggle spellcheck
