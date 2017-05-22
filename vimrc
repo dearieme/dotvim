@@ -269,7 +269,7 @@ function! Prove ( verbose, taint )
 "        if a:taint
 "            let s:params = s:params . "t"
 "        endif
-        execute "!TEST_POD=1 prove --timer --normalize --merge -" . s:params . " " . g:testfile
+        execute "!TEST_POD=1 prove -I./t/lib --timer --normalize --merge -" . s:params . " " . g:testfile
     else
        call Compile ()
     endif
