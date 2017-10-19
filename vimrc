@@ -145,7 +145,7 @@ let g:lightline = {
       \ 'colorscheme': 'jellybeans',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ],
-      \   'right': [ [ 'mixedindent', 'syntastic', 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
+      \   'right': [ [ 'mixedindent', 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
       \ },
       \ 'component_function': {
       \   'fugitive': 'MyFugitive',
@@ -156,11 +156,9 @@ let g:lightline = {
       \   'mode': 'MyMode',
       \ },
       \ 'component_expand': {
-      \   'syntastic': 'SyntasticStatuslineFlag',
       \   'mixedindent': 'MixedIndentingWarning'
       \ },
       \ 'component_type': {
-      \   'syntastic': 'error',
       \   'mixedindent': 'error'
       \ },
       \ 'separator': { 'left': '', 'right': '' },
@@ -224,15 +222,6 @@ function! TagbarStatusFunc(current, sort, fname, ...) abort
   return lightline#statusline(0)
 endfunction
 
-augroup AutoSyntastic
-  autocmd!
-  autocmd BufWritePost *.pm,*.c,*.cpp call s:syntastic()
-augroup END
-function! s:syntastic()
-  SyntasticCheck
-  call lightline#update()
-endfunction
-
 function! MixedIndentingWarning()
     if !exists("b:statusline_tab_warning")
         let tabs = search('^\t', 'nw') != 0
@@ -293,14 +282,6 @@ au FileType perl noremap <leader>P :PerlModuleSource <cword><cr>zR<cr>
 au FileType perl command! -range=% -nargs=* Tidy <line1>,<line2>!perltidy
 au FileType perl nmap <Leader>pt mz:Tidy<cr>'z:delmarks z<cr>  " normal mode
 au FileType perl vmap <Leader>pt :Tidy<cr>                     " visual mode
-
-" perl syntastic
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_perl_checkers = ['perl']
-let g:syntastic_enable_perl_checker = 1
-let g:syntastic_perl_lib_path = ['./lib', './t/lib']
-let g:syntastic_ignore_files = ['\m\c\.t$']
 
 " Ack
 let g:ackhighlight = 1
