@@ -14,7 +14,7 @@ endif
 
 " set path for local perl modules *before* vim-perl gets loaded as it does some
 " mad batshit
-set path+=lib
+set path+=lib,t/lib
 
 " get pathogen to load the plugins
 call pathogen#infect()
