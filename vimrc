@@ -301,6 +301,9 @@ au FileType perl vmap <Leader>pt :Tidy<cr>                     " visual mode
 let g:ackhighlight = 1
 let g:ack_default_options = " -H --nocolor --nogroup --column"
 
+" ALE
+let g:ale_perl_perl_options = '-c -Ilib -It/lib'
+
 function! DoPrettyXML()
   " save the filetype so we can restore it later
   let l:origft = &ft
