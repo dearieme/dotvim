@@ -257,7 +257,7 @@ au BufRead,BufNewFile *.t,*.cgi    set filetype=perl
 au BufRead,BufNewFile *.conf       set filetype=apache
 au BufRead,BufNewFile *.{tt,tt2}   set filetype=tt2html
 au BufRead,BufNewFile *.tracwiki   set filetype=tracwiki
-au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown
+au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn,md.html} set filetype=markdown
 
 " Perl tests
 function! Prove ( verbose, taint )
