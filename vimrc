@@ -10,8 +10,7 @@ if &term =~ '^screen'
     execute "set <xDown>=\e[1;*B"
     execute "set <xRight>=\e[1;*C"
     execute "set <xLeft>=\e[1;*D"
-endif
-
+endif 
 " set path for local perl modules *before* vim-perl gets loaded as it does some
 " mad batshit
 set path+=lib,t/lib
@@ -20,14 +19,17 @@ set path+=lib,t/lib
 call pathogen#infect()
 silent! call pathogen#helptags()
 
+" Enable all the filetype help
 filetype on
 filetype plugin on
 filetype indent on
 syntax on
 
+" Make it pretty
 set t_Co=256
 colorscheme bakedbeans
 
+" Basic options
 set autoindent
 set backspace=indent,eol,start
 set cursorline
@@ -53,15 +55,18 @@ set tabstop=2
 set textwidth=79
 set visualbell
 
+" tweak some file types
+au BufRead,BufNewFile *.t,*.cgi    set filetype=perl
+au BufRead,BufNewFile *.conf       set filetype=apache
+au BufRead,BufNewFile *.{tt,tt2}   set filetype=tt2html
+au BufRead,BufNewFile *.tracwiki   set filetype=tracwiki
+au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn,md.html} set filetype=markdown
+
 " Sidebar folder navigation
 let NERDTreeShowLineNumbers=1
 let NERDTreeShowBookmarks=1
 let NERDTreeChDirMode=2
 let NERDTreeWinSize=35
-
-" shortcuts
-inoremap jj <Esc>
-:nnoremap <F5> :buffers<CR>:buffer<Space>
 
 " Cold turkey on arrow key addiction
 inoremap  <Up>     <NOP>
@@ -84,7 +89,7 @@ cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 nnoremap & :&&<CR>
 xnoremap & :&&<CR>
 
-" Search for visual selection with */#
+" Search for visual selection forwards/backwords with */#
 xnoremap * :<C-u>call <SID>VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
 xnoremap # :<C-u>call <SID>VSetSearch('?')<CR>?<C-R>=@/<CR><CR>
 
@@ -95,10 +100,12 @@ function! s:VSetSearch(cmdtype)
   let @s = temp
 endfunction
 
+" shortcuts
+inoremap jj <Esc>
+:nnoremap <F5> :buffers<CR>:buffer<Space>
+
 map <Leader>h :bnext<cr>
 map <Leader>l :bprev<cr>
-map <Leader>pd :!perldoc %<cr>
-map <Leader>x :!perl -Ilib %<cr>
 map <leader>tts :%s/\s\+$//<cr>
 map <leader>sp :setlocal spell! spelllang=en_GB<CR>  " toggle spellcheck
 
@@ -106,7 +113,13 @@ map <leader>cd :cd %:p:h<cr>         " cd to directory of current file
 map <leader>F :NERDTreeFind<cr>
 map <leader>R :source ~/.vimrc<cr>
 
-" Gitv
+map <Leader>pd :!perldoc %<cr>
+map <Leader>x :!perl -Ilib %<cr>
+
+" perldoc for module || perl command
+noremap K :!perldoc <cword> <bar><bar> perldoc -f <cword><cr>
+
+" Gitv options, not interested in merge commits
 nmap <leader>gv :Gitv --all --no-merges<cr>
 nmap <leader>gV :Gitv! --all --no-merges<cr>
 vmap <leader>gV :Gitv! --all --no-merges<cr>
@@ -133,9 +146,6 @@ nmap <leader>v v2aBV
 
 " save files as root without prior sudo
 cmap w!! w !sudo tee % >/dev/null
-
-" perldoc for module || perl command
-noremap K :!perldoc <cword> <bar><bar> perldoc -f <cword><cr>
 
 autocmd BufReadPost fugitive://* set bufhidden=delete
 
@@ -252,13 +262,6 @@ function! MixedIndentingWarning()
     return b:statusline_tab_warning
 endfunction
 
-" file types
-au BufRead,BufNewFile *.t,*.cgi    set filetype=perl
-au BufRead,BufNewFile *.conf       set filetype=apache
-au BufRead,BufNewFile *.{tt,tt2}   set filetype=tt2html
-au BufRead,BufNewFile *.tracwiki   set filetype=tracwiki
-au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn,md.html} set filetype=markdown
-
 " Perl tests
 function! Prove ( verbose, taint )
     if ! exists("g:testfile")
@@ -278,6 +281,7 @@ function! Prove ( verbose, taint )
     endif
 endfunction
 
+" Perl compile check
 function! Compile ()
     if ! exists("g:compilefile")
         let g:compilefile = expand("%")
@@ -332,7 +336,6 @@ command! PrettyXML call DoPrettyXML()
 
 " Open notes file for this branch, depends on fugitive and a template for
 " markdeep
-
 augroup templates
   autocmd BufNewFile *.md.html 0r ~/.vim/templates/skeleton.md.html
 augroup END
