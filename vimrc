@@ -330,12 +330,18 @@ function! DoPrettyXML()
 endfunction
 command! PrettyXML call DoPrettyXML()
 
-" Open notes file for this branch, depends on fugitive
+" Open notes file for this branch, depends on fugitive and a template for
+" markdeep
+
+augroup templates
+  autocmd BufNewFile *.md.html 0r ~/.vim/templates/skeleton.md.html
+augroup END
+
 function! OpenNotes()
   try
     if exists('*fugitive#head')
       let _ = fugitive#head()
-      let notefile = "~/dev/NOTES/tickets/" . _ . ".mkd"
+      let notefile = "~/dev/NOTES/tickets/" . _ . ".md.html"
       execute "e" notefile
     endif
   catch
