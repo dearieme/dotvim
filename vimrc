@@ -303,6 +303,7 @@ let g:ack_default_options = " -H --nocolor --nogroup --column"
 
 " ALE
 let g:ale_perl_perl_options = '-c -Ilib -It/lib'
+let g:ale_linters = {'perl': ['perl'] }
 
 function! DoPrettyXML()
   " save the filetype so we can restore it later
