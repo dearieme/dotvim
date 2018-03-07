@@ -11,6 +11,7 @@ if &term =~ '^screen'
     execute "set <xRight>=\e[1;*C"
     execute "set <xLeft>=\e[1;*D"
 endif 
+
 " set path for local perl modules *before* vim-perl gets loaded as it does some
 " mad batshit
 set path+=lib,t/lib
@@ -23,12 +24,12 @@ syntax on
 
 " Make it pretty
 set t_Co=256
+set cursorline
 colorscheme bakedbeans
 
 " Basic options
 set autoindent
 set backspace=indent,eol,start
-set cursorline
 set expandtab
 set formatoptions+=q,r,n,1,j
 set history=500
@@ -114,6 +115,9 @@ nmap <leader>gv :Gitv --all --no-merges<cr>
 nmap <leader>gV :Gitv! --all --no-merges<cr>
 vmap <leader>gV :Gitv! --all --no-merges<cr>
 
+" fzf from normal mode
+nnoremap <C-p> :<C-u>FZF<CR>
+
 " http://vim.wikia.com/wiki/Redirect_g_search_output
 nmap <leader>s :redir @a<cr>:g//<cr>:redir END<cr>:new<cr>:put! a<cr><cr>zRggd<cr>
 
@@ -139,7 +143,7 @@ cmap w!! w !sudo tee % >/dev/null
 
 autocmd BufReadPost fugitive://* set bufhidden=delete
 
-" lightline
+" lightline template
 set laststatus=2            " always show status line
 let g:lightline = {
       \ 'colorscheme': 'jellybeans',
@@ -166,6 +170,8 @@ let g:lightline = {
       \ 'subseparator': { 'left': '', 'right': '' }
       \ }
 
+" lightline helpers
+"
 function! MyModified()
   return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
 endfunction
@@ -238,6 +244,7 @@ function! MixedIndentingWarning()
     endif
     return b:statusline_tab_warning
 endfunction
+
 
 " Perl tests
 function! Prove ( verbose, taint )

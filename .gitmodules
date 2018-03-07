@@ -43,3 +43,6 @@
 [submodule "bundle/ale"]
 	path = pack/bundle/start/ale
 	url = https://github.com/w0rp/ale.git
+[submodule "pack/bundle/start/fzf"]
+	path = pack/bundle/start/fzf
+	url = https://github.com/junegunn/fzf
