@@ -1,54 +1,54 @@
 [submodule "bundle/nerdtree"]
-	path = bundle/nerdtree
+	path = pack/bundle/start/nerdtree
 	url = git://github.com/scrooloose/nerdtree.git
 [submodule "bundle/taglist"]
 	path = bundle/taglist
 	url = git://github.com/vim-scripts/taglist.vim.git
 [submodule "bundle/fugitive"]
-	path = bundle/fugitive
+	path = pack/bundle/start/fugitive
 	url = git://github.com/tpope/vim-fugitive.git
 [submodule "bundle/gitv"]
-	path = bundle/gitv
+	path = pack/bundle/start/gitv
 	url = git://github.com/gregsexton/gitv.git
 [submodule "bundle/tlib"]
-	path = bundle/tlib
+	path = pack/bundle/start/tlib
 	url = git://github.com/tomtom/tlib_vim.git
 [submodule "bundle/markdown"]
-	path = bundle/markdown
+	path = pack/bundle/start/markdown
 	url = git://github.com/plasticboy/vim-markdown.git
 [submodule "bundle/vimproc"]
 	path = bundle/vimproc
 	url = https://github.com/Shougo/vimproc.git
 [submodule "bundle/lightline"]
-	path = bundle/lightline
+	path = pack/bundle/start/lightline
 	url = https://github.com/itchyny/lightline.vim
 [submodule "bundle/ack"]
-	path = bundle/ack
+	path = pack/bundle/start/ack
 	url = https://github.com/mileszs/ack.vim.git
 [submodule "bundle/vim-surround"]
-	path = bundle/vim-surround
+	path = pack/bundle/start/vim-surround
 	url = git://github.com/tpope/vim-surround.git
 [submodule "bundle/vim-perl"]
-	path = bundle/vim-perl
+	path = pack/bundle/start/vim-perl
 	url = https://github.com/vim-perl/vim-perl.git
 [submodule "bundle/vim-repeat"]
-	path = bundle/vim-repeat
+	path = pack/bundle/start/vim-repeat
 	url = https://github.com/tpope/vim-repeat.git
 [submodule "bundle/mojo"]
-	path = bundle/mojo
+	path = pack/bundle/start/mojo
 	url = https://github.com/yko/mojo.vim.git
 [submodule "bundle/vim-commentary"]
-	path = bundle/vim-commentary
+	path = pack/bundle/start/vim-commentary
 	url = git://github.com/tpope/vim-commentary.git
 [submodule "bundle/vim-abolish"]
-	path = bundle/vim-abolish
+	path = pack/bundle/start/vim-abolish
 	url = git://github.com/tpope/vim-abolish.git
 [submodule "bundle/vim-unimpaired"]
-	path = bundle/vim-unimpaired
+	path = pack/bundle/start/vim-unimpaired
 	url = git://github.com/tpope/vim-unimpaired.git
 [submodule "bundle/vim-elixir"]
-	path = bundle/vim-elixir
+	path = pack/bundle/start/vim-elixir
 	url = https://github.com/elixir-lang/vim-elixir.git
 [submodule "bundle/ale"]
-	path = bundle/ale
+	path = pack/bundle/start/ale
 	url = https://github.com/w0rp/ale.git

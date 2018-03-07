@@ -15,10 +15,6 @@ endif
 " mad batshit
 set path+=lib,t/lib
 
-" get pathogen to load the plugins
-call pathogen#infect()
-silent! call pathogen#helptags()
-
 " Enable all the filetype help
 filetype on
 filetype plugin on
