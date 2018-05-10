@@ -46,3 +46,9 @@
 [submodule "pack/bundle/start/fzf"]
 	path = pack/bundle/start/fzf
 	url = https://github.com/junegunn/fzf
+[submodule "pack/bundle/start/vim-dispatch"]
+	path = pack/bundle/start/vim-dispatch
+	url = https://github.com/tpope/vim-dispatch.git
+[submodule "pack/bundle/start/vim-dispatch-neovim"]
+	path = pack/bundle/start/vim-dispatch-neovim
+	url = https://github.com/radenling/vim-dispatch-neovim.git
