@@ -52,3 +52,6 @@
 [submodule "pack/bundle/start/vim-dispatch-neovim"]
 	path = pack/bundle/start/vim-dispatch-neovim
 	url = https://github.com/radenling/vim-dispatch-neovim.git
+[submodule "pack/bundle/start/haskell-vim"]
+	path = pack/bundle/start/haskell-vim
+	url = https://github.com/neovimhaskell/haskell-vim.git
