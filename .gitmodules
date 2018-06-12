@@ -55,3 +55,6 @@
 [submodule "pack/bundle/start/haskell-vim"]
 	path = pack/bundle/start/haskell-vim
 	url = https://github.com/neovimhaskell/haskell-vim.git
+[submodule "pack/bundle/start/vim-hindent"]
+	path = pack/bundle/start/vim-hindent
+	url = https://github.com/alx741/vim-hindent.git

@@ -285,6 +285,31 @@ au FileType perl command! -range=% -nargs=* Tidy <line1>,<line2>!perltidy
 au FileType perl nmap <Leader>pt mz:Tidy<cr>'z:delmarks z<cr>  " normal mode
 au FileType perl vmap <Leader>pt :Tidy<cr>                     " visual mode
 
+" Haskell
+let g:hindent_on_save = 0
+
+" Helper function, called below with mappings
+function! HaskellFormat(which) abort
+  if a:which ==# 'hindent' || a:which ==# 'both'
+    :Hindent
+  endif
+  if a:which ==# 'stylish' || a:which ==# 'both'
+    silent! exe 'undojoin'
+    silent! exe 'keepjumps %!stylish-haskell'
+  endif
+endfunction
+
+" Key bindings
+augroup haskellStylish
+  au!
+  " Just hindent
+  au FileType haskell nnoremap <leader>hi :Hindent<CR>
+  " Just stylish-haskell
+  au FileType haskell nnoremap <leader>hs :call HaskellFormat('stylish')<CR>
+  " First hindent, then stylish-haskell
+  au FileType haskell nnoremap <leader>hf :call HaskellFormat('both')<CR>
+augroup END
+
 " Ack
 let g:ackhighlight = 1
 let g:ack_default_options = " -H --nocolor --nogroup --column"
@@ -292,6 +317,7 @@ let g:ack_default_options = " -H --nocolor --nogroup --column"
 " ALE
 let g:ale_perl_perl_options = '-c -Ilib -It/lib'
 let g:ale_linters = {'perl': ['perl'] }
+let g:ale_linters.haskell = ['stack-ghc', 'hlint']
 
 function! DoPrettyXML()
   " save the filetype so we can restore it later
