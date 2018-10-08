@@ -58,3 +58,6 @@
 [submodule "pack/bundle/start/vim-hindent"]
 	path = pack/bundle/start/vim-hindent
 	url = https://github.com/alx741/vim-hindent.git
+[submodule "pack/bundle/start/idris-vim"]
+	path = pack/bundle/start/idris-vim
+	url = https://github.com/idris-hackers/idris-vim.git
