@@ -6,10 +6,11 @@ resemblance now. Uses pathogen to load plugins.
 ## Install
 
     git clone git://github.com/dearieme/dotvim.git .vim
+    curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     cd .vim
-    git submodule init
-    git submodule update
-
     ln -s ~/.vim/vimrc ~/.vimrc
+
+    # Call :PlugInstall inside neovim to install all the plugins
 
 

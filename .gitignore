@@ -1,5 +1,7 @@
 view
 view/*
+plugged
+plugged/*
 doc/tags
 bundle/*/doc/tags
 .netrwhist

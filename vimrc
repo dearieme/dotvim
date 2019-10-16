@@ -4,6 +4,24 @@ if strlen($SUDO_USER)
     let luser = $SUDO_USER
 endif
 
+call plug#begin()
+Plug 'alx741/vim-hindent'
+Plug 'dense-analysis/ale'
+Plug 'itchyny/lightline.vim'
+Plug 'junegunn/fzf.vim'
+Plug 'mileszs/ack.vim'
+Plug 'neovimhaskell/haskell-vim'
+Plug 'plasticboy/vim-markdown'
+Plug 'radenling/vim-dispatch-neovim'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'vim-perl/vim-perl'
+call plug#end()
+
 " tmux will send xterm-style keys when its xterm-keys option is on
 if &term =~ '^screen'
     execute "set <xUp>=\e[1;*A"

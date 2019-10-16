@@ -1,63 +1,6 @@
 [submodule "bundle/taglist"]
 	path = bundle/taglist
 	url = git://github.com/vim-scripts/taglist.vim.git
-[submodule "bundle/fugitive"]
-	path = pack/bundle/start/fugitive
-	url = git://github.com/tpope/vim-fugitive.git
-[submodule "bundle/markdown"]
-	path = pack/bundle/start/markdown
-	url = git://github.com/plasticboy/vim-markdown.git
 [submodule "bundle/vimproc"]
 	path = bundle/vimproc
 	url = https://github.com/Shougo/vimproc.git
-[submodule "bundle/lightline"]
-	path = pack/bundle/start/lightline
-	url = https://github.com/itchyny/lightline.vim
-[submodule "bundle/ack"]
-	path = pack/bundle/start/ack
-	url = https://github.com/mileszs/ack.vim.git
-[submodule "bundle/vim-surround"]
-	path = pack/bundle/start/vim-surround
-	url = git://github.com/tpope/vim-surround.git
-[submodule "bundle/vim-perl"]
-	path = pack/bundle/start/vim-perl
-	url = https://github.com/vim-perl/vim-perl.git
-[submodule "bundle/vim-repeat"]
-	path = pack/bundle/start/vim-repeat
-	url = https://github.com/tpope/vim-repeat.git
-[submodule "bundle/mojo"]
-	path = pack/bundle/start/mojo
-	url = https://github.com/yko/mojo.vim.git
-[submodule "bundle/vim-commentary"]
-	path = pack/bundle/start/vim-commentary
-	url = git://github.com/tpope/vim-commentary.git
-[submodule "bundle/vim-abolish"]
-	path = pack/bundle/start/vim-abolish
-	url = git://github.com/tpope/vim-abolish.git
-[submodule "bundle/vim-unimpaired"]
-	path = pack/bundle/start/vim-unimpaired
-	url = git://github.com/tpope/vim-unimpaired.git
-[submodule "bundle/vim-elixir"]
-	path = pack/bundle/start/vim-elixir
-	url = https://github.com/elixir-lang/vim-elixir.git
-[submodule "bundle/ale"]
-	path = pack/bundle/start/ale
-	url = https://github.com/w0rp/ale.git
-[submodule "pack/bundle/start/fzf"]
-	path = pack/bundle/start/fzf
-	url = https://github.com/junegunn/fzf
-[submodule "pack/bundle/start/vim-dispatch"]
-	path = pack/bundle/start/vim-dispatch
-	url = https://github.com/tpope/vim-dispatch.git
-[submodule "pack/bundle/start/vim-dispatch-neovim"]
-	path = pack/bundle/start/vim-dispatch-neovim
-	url = https://github.com/radenling/vim-dispatch-neovim.git
-[submodule "pack/bundle/start/haskell-vim"]
-	path = pack/bundle/start/haskell-vim
-	url = https://github.com/neovimhaskell/haskell-vim.git
-[submodule "pack/bundle/start/vim-hindent"]
-	path = pack/bundle/start/vim-hindent
-	url = https://github.com/alx741/vim-hindent.git
-[submodule "pack/bundle/start/idris-vim"]
-	path = pack/bundle/start/idris-vim
-	url = https://github.com/idris-hackers/idris-vim.git
