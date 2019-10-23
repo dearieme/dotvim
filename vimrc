@@ -9,6 +9,7 @@ Plug 'alx741/vim-hindent'
 Plug 'dense-analysis/ale'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'mileszs/ack.vim'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'plasticboy/vim-markdown'
@@ -20,6 +21,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'vim-perl/vim-perl'
+Plug 'glacambre/firenvim', { 'do': function('firenvim#install') }
 call plug#end()
 
 " tmux will send xterm-style keys when its xterm-keys option is on
@@ -336,6 +338,15 @@ let g:ack_default_options = " -H --nocolor --nogroup --column"
 let g:ale_perl_perl_options = '-c -Ilib -It/lib'
 let g:ale_linters = {'perl': ['perl'] }
 let g:ale_linters.haskell = ['stack-ghc', 'hlint']
+
+let g:firenvim_config = {
+    \ 'localSettings': {
+        \ '.*': {
+            \ 'selector': 'textarea',
+            \ 'priority': 0,
+        \ }
+    \ }
+\ }
 
 function! DoPrettyXML()
   " save the filetype so we can restore it later
