@@ -8,7 +8,7 @@ endif
 call plug#begin()
 Plug 'alx741/vim-hindent'
 Plug 'dense-analysis/ale'
-Plug 'glacambre/firenvim', { 'do': function('firenvim#install') }
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
@@ -401,3 +401,9 @@ function! OpenNotes()
 endfunction
 command! OpenNotes call OpenNotes()
 noremap <Leader>D :OpenNotes<cr>
+
+" Disable hard wrapping in firenvim
+if exists('g:started_by_firenvim')
+  set wrap
+  set textwidth=0
+endif
